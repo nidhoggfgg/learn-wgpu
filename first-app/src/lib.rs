@@ -28,7 +28,7 @@ impl FirstApp {
                 if let Some(container) = doc.get_element_by_id(CONTAINER_ID) {
                     container
                         .append_child(&canvas)
-                        .expect("can't add canvas to webgpu_app_container");
+                        .expect(&format!("can't add canvas to {}", CONTAINER_ID));
                 } else {
                     (|| -> Result<(), JsValue> {
                         let container = doc.create_element("div")?;
@@ -36,7 +36,10 @@ impl FirstApp {
                         container.append_child(&canvas)?;
                         Ok(())
                     })()
-                    .unwrap();
+                    .expect(&format!(
+                        "can't create {} and add canvas to it",
+                        CONTAINER_ID
+                    ));
                 }
             });
 
