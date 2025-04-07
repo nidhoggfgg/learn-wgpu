@@ -1,0 +1,1 @@
+learn how to use webgpu and some small funny code.
